@@ -25,13 +25,15 @@ public class CollectionTestSuite {
     public void testOddNumbersExterminatorEmptyList(){
         //Given
         ArrayList<Integer> myList = new ArrayList<>();
+        OddNumbersExterminator oddNumbersExterminator = new OddNumbersExterminator();
         //When
         if(myList.size() ==0){
             System.out.println("Testing: Lista jest pusta!");
         }
+        ArrayList<Integer> resultList = oddNumbersExterminator.exterminate(myList);
         //Then
         ArrayList<Integer> properList = new ArrayList<>();
-        Assert.assertEquals(properList, myList);
+        Assert.assertEquals(properList, resultList);
     }
     @Test
     public void testOddNumbersExterminatorNormalList(){
