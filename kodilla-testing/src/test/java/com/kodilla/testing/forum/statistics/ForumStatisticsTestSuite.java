@@ -70,8 +70,8 @@ public class ForumStatisticsTestSuite {
         Assert.assertEquals(100, statForum.getQuantityOfComments(),0.001);
         Assert.assertEquals(5, statForum.getQuantityOfUsers(),0.001);
         Assert.assertEquals(200, statForum.getAvgPostsPerUser(),0.001);
-        Assert.assertEquals(10, statForum.getAvgCommentsPerPost(), 0.001);
-        Assert.assertEquals(2, statForum.getAvgCommentsPerUser(),0.001);
+        Assert.assertEquals(0.1, statForum.getAvgCommentsPerPost(), 0.001);
+        Assert.assertEquals(20, statForum.getAvgCommentsPerUser(),0.001);
     }
     @Test
     public void testCalculateAdvStatisticsCaseZeroComments() {
