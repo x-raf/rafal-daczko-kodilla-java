@@ -1,5 +1,6 @@
 package com.kodilla.testing.library;
 
+import org.junit.Assert;
 import org.junit.Test;
 
 import java.util.ArrayList;
@@ -84,5 +85,44 @@ public class BookDirectoryTestSuite {
         assertEquals(0, theListOfBooks10.size());
         verify(libraryDatabaseMock, times(0)).listBooksWithCondition(anyString());
 
+    }
+    @Test
+    public void testListBooksInHandsOfZeroBooks() {
+        // Given
+        LibraryDatabase libraryDatabaseMock = mock(LibraryDatabase.class);
+        BookLibrary myBookLibrary = new BookLibrary(libraryDatabaseMock);
+        List<Book> resultListOfZeroBooks = generateListOfNBooks(0);
+        LibraryUser testLibraryUser = new LibraryUser("John","Doe","77123102159");
+        when(myBookLibrary.listBooksInHandsOf(testLibraryUser)).thenReturn(resultListOfZeroBooks);
+        //When
+        int howManyBooks=myBookLibrary.listBooksInHandsOf(testLibraryUser).size();
+        //Then
+        Assert.assertEquals(0,howManyBooks);
+    }
+    @Test
+    public void testListBooksInHandsOfOneBook() {
+        // Given
+        LibraryDatabase libraryDatabaseMock = mock(LibraryDatabase.class);
+        BookLibrary myBookLibrary = new BookLibrary(libraryDatabaseMock);
+        List<Book> resultListOfOneBook = generateListOfNBooks(1);
+        LibraryUser testLibraryUser = new LibraryUser("John","Doe","77123102159");
+        when(myBookLibrary.listBooksInHandsOf(testLibraryUser)).thenReturn(resultListOfOneBook);
+        //When
+        int howManyBooks=myBookLibrary.listBooksInHandsOf(testLibraryUser).size();
+        //Then
+        Assert.assertEquals(1,howManyBooks);
+    }
+    @Test
+    public void testListBooksInHandsOfFiveBooks() {
+        // Given
+        LibraryDatabase libraryDatabaseMock = mock(LibraryDatabase.class);
+        BookLibrary myBookLibrary = new BookLibrary(libraryDatabaseMock);
+        List<Book> resultListOfFiveBooks = generateListOfNBooks(5);
+        LibraryUser testLibraryUser = new LibraryUser("John","Doe","77123102159");
+        when(myBookLibrary.listBooksInHandsOf(testLibraryUser)).thenReturn(resultListOfFiveBooks);
+        //When
+        int howManyBooks=myBookLibrary.listBooksInHandsOf(testLibraryUser).size();
+        //Then
+        Assert.assertEquals(5,howManyBooks);
     }
 }
