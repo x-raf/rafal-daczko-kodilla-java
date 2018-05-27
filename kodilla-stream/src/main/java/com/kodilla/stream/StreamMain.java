@@ -14,11 +14,16 @@ import com.kodilla.stream.lambda.Processor;
 
 import java.util.List;
 import java.util.Map;
+import java.util.Scanner;
 import java.util.stream.Collectors;
 
 public class StreamMain {
     public static void main(String[] args) {
         System.out.println("Welcome to module 7 - Stream");
+
+//        Scanner scanner = new Scanner(System.in);
+//        String sc= scanner.nextLine();
+//        System.out.println("Wprowadziłeś: " + sc);
 
         Processor processor = new Processor();
         Executor codeToExecute = () -> System.out.println("\nThis is sample text.");

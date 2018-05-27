@@ -8,6 +8,7 @@ import java.time.Period;
 import java.time.temporal.ChronoUnit;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 import java.util.OptionalDouble;
 
 import static java.util.stream.Collectors.toList;
@@ -144,12 +145,13 @@ public class BoardTestSuite {
         //When
         List<TaskList> averageWorkingOnTask = new ArrayList<>();
         averageWorkingOnTask.add(new TaskList("In progress"));
-        OptionalDouble averageTimeOnTask = project.getTaskLists().stream()
+        double averageTimeOnTask = project.getTaskLists().stream()
                 .filter(averageWorkingOnTask::contains)
                 .flatMap(t1 -> t1.getTasks().stream())
-                .mapToDouble(t -> Period.between(t.getCreated(),LocalDate.now()).getDays())
-                .average();
+                .map(t -> Period.between(t.getCreated(),LocalDate.now()).getDays())
+                .mapToInt(n->n)
+                .average().orElse(0);
 
-        Assert.assertEquals(10.0, averageTimeOnTask.getAsDouble(), 0.001);
+        Assert.assertEquals(10.0, averageTimeOnTask, 0.001);
     }
 }
