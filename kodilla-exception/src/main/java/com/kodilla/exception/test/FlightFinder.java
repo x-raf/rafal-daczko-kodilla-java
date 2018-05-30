@@ -4,7 +4,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class FlightFinder {
-    public void findFlight(Flight flight) throws RouteNotFoundException{
+    public boolean findFlight(Flight flight) throws RouteNotFoundException{
         Map<String,Boolean> airports = new HashMap<>();
 
         airports.put("Paryż-PAR",true);
@@ -16,16 +16,16 @@ public class FlightFinder {
 
         if (!airports.containsKey(flight.getArrivalAirport()))
             throw new RouteNotFoundException("Flight not found exception caught.");
-        System.out.println("Lot z " + flight.getDepartureAirport() + " do " + flight.getArrivalAirport() + " znaleziony.");
+        return airports.get(flight.getArrivalAirport());
     }
 
     public static void main(String[] args) {
 
-        Flight flight = new Flight("Warszawa-WAW", "Wrocław-WRO");
+        Flight flight = new Flight("Warszawa-WAW", "Madryt-MAD");
         FlightFinder finder = new FlightFinder();
 
         try {
-            finder.findFlight(flight);
+            System.out.println(finder.findFlight(flight));
         } catch (RouteNotFoundException e) {
             System.out.println("Niestety brak takiego połączenia. " + e);
         }
