@@ -22,7 +22,6 @@ public class FlightFinder {
     public static void main(String[] args) {
 
         Flight flight = new Flight("Warszawa-WAW", "Wrocław-WRO");
-        Flight flight1 = new Flight("Rzym-ROM", "Londyn-LCY");
         FlightFinder finder = new FlightFinder();
 
         try {
