@@ -30,6 +30,7 @@ public class RPS_Runner {
             }else {
                 System.out.println("Tie! Both players choose Scissors!");
             }
+            System.exit(0);
         }
         if (userChoice == 1) {
             if (computerChoice == 2) {
