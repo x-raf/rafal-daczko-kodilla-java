@@ -70,7 +70,8 @@ public class RPS_Runner {
             }
             System.out.println("What's next, finish? Press x");
             System.out.println("New game? Press n");
-            input = scanner.nextLine();
+            Scanner inputValue = new Scanner(System.in);
+            input = inputValue.nextLine();
             if (input.equals("n")) {
                 end = false;
             } else if (input.equals("x")) {
