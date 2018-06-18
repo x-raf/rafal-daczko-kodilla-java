@@ -20,7 +20,7 @@ public final class Calculator {
     }
     public double div(double a, double b) throws ArithmeticException{
         if (b == 0) {
-            throw new ArithmeticException("Illegal argument!");
+            throw new ArithmeticException("Illegal argument! You can't divide by 0");
         }
         return display.displayValue(a/b);
     }

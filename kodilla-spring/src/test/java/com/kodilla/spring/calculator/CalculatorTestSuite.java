@@ -21,7 +21,7 @@ public class CalculatorTestSuite {
         double add = calculator.add(10,5);
         double sub = calculator.sub(15,5);
         double mul = calculator.mul(5,3);
-        double div = calculator.div(15,3);
+        double div = calculator.div(15,0);
         //Then
         Assert.assertEquals(15, add,0.001);
         Assert.assertEquals(10, sub,0.001);
