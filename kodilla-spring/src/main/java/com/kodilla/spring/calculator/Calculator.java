@@ -18,7 +18,10 @@ public final class Calculator {
     public double mul(double a, double b){
         return display.displayValue(a*b);
     }
-    public double div(double a, double b){
+    public double div(double a, double b) throws ArithmeticException{
+        if (b == 0) {
+            throw new ArithmeticException("Illegal argument!");
+        }
         return display.displayValue(a/b);
     }
 }
