@@ -34,5 +34,8 @@ public class BoardTestSuite {
     public void testSudokuBoard(){
         SudokuBoard board = initBoard();
         System.out.println(board);
+        SudokuSolver solver = new SudokuSolver();
+        solver.resolveSudoku(board);
+        System.out.println(board);
     }
 }

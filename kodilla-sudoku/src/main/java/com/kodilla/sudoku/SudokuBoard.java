@@ -6,6 +6,10 @@ import java.util.List;
 import static com.kodilla.sudoku.SudokuElement.EMPTY;
 
 public class SudokuBoard {
+
+    private static final int MIN_VALUE = 1;
+    private static final int MAX_VALUE = 9;
+
     private List<SudokuRow> rows;
 
     public List<SudokuRow> getRows() {
@@ -33,30 +37,27 @@ public class SudokuBoard {
         String a = new String(new char[41]).replace("\0",("\u2500"));
         String b = new String(new char[41]).replace("\0",("\u2501"));
         String s =  b + "\n";
-        for(int row = 1; row<=9; row++){
+        for(int row = MIN_VALUE; row <= MAX_VALUE; row++){
             s+="\u2551";
-            for(int col = 1; col <=9; col++){
+            for(int col = MIN_VALUE; col <= MAX_VALUE; col++){
                 s+=" ";
                 int val = getValue(row,col);
                 s+= val == EMPTY ? " ": val;
-                if (col <9 && col%3 != 0) {
+                if (col < MAX_VALUE && col%3 != 0) {
                     s+= " \u2502";
                 }else {
                     s+= " \u2551";
                 }
             }
             s+="\n";
-            if (row < 9 && row%3 != 0){
+            if (row < MAX_VALUE && row%3 != 0){
                 s += a + "\n";
-            }else if(row<9 && row%3 ==0 && row !=9){
+            }else if(row < MAX_VALUE && row%3 ==0 && row != MAX_VALUE){
                 s+= b + "\n";
             }else {
                 s += b + "\n";
             }
         }
         return s;
-    }
-    public void resolveSudoku(){
-
     }
 }
