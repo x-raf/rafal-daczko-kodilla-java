@@ -9,7 +9,7 @@ public class BoardTestSuite {
         //Tu wypełnić planszę przykładowym sudoku
 
         //World hardest sudoku
-        /*board.setValue(1,1,8);
+        board.setValue(1,1,8);
         board.setValue(2,3,3);
         board.setValue(2,4,6);
         board.setValue(3,2,7);
@@ -30,7 +30,7 @@ public class BoardTestSuite {
         board.setValue(8,8,1);
         board.setValue(9,2,9);
         board.setValue(9,7,4);
-        return board;*/
+        return board;
 
         /*
         World hardest sudoku solution
@@ -47,7 +47,7 @@ public class BoardTestSuite {
         */
 
         //Easy Sudoku
-        board.setValue(1, 4, 2);
+       /* board.setValue(1, 4, 2);
         board.setValue(1, 5, 6);
         board.setValue(1, 7, 7);
         board.setValue(1, 9, 1);
@@ -83,16 +83,17 @@ public class BoardTestSuite {
         board.setValue(9, 3, 3);
         board.setValue(9, 5, 1);
         board.setValue(9, 6, 8);
-        return board;
+        return board;*/
     }
 
     @Test
     public void testSudokuBoard() {
         SudokuBoard board = initBoard();
         System.out.println(board);
-        SudokuSolver solver = new SudokuSolver();
-        solver.resolveSudoku(board);
-
+        /*SudokuSolver solver = new SudokuSolver();
+        solver.resolveSudoku(board);*/
+        SudokuSolverV2 solverV2 = new SudokuSolverV2();
+        solverV2.solve(board);
         System.out.println(board);
     }
 }
