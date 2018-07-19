@@ -37,25 +37,25 @@ public class SudokuSolver {
     }
 
     private Integer isPossibleOnlyHere(int row, int column, SudokuBoard sudokuBoard) {
-        for (Integer possibility:sudokuBoard.getPossibilities(row, column)) {
+        for (Integer possibility : sudokuBoard.getPossibilities(row, column)) {
             boolean result = true;
-            for (int n=BOARD_START_INDEX; n<BOARD_SIZE; n++) {
-                Integer val = sudokuBoard.getValue(row,n);
-                if(val == -1 && sudokuBoard.getPossibilities(row,n).contains(possibility)) result = false;
+            for (int n = BOARD_START_INDEX; n < BOARD_SIZE; n++) {
+                Integer val = sudokuBoard.getValue(row, n);
+                if (val == -1 && sudokuBoard.getPossibilities(row, n).contains(possibility)) result = false;
             }
-            for (int n=BOARD_START_INDEX; n<BOARD_SIZE; n++) {
-                Integer val = sudokuBoard.getValue(n,column);
-                if(val == -1 && sudokuBoard.getPossibilities(n,column).contains(possibility)) result = false;
+            for (int n = BOARD_START_INDEX; n < BOARD_SIZE; n++) {
+                Integer val = sudokuBoard.getValue(n, column);
+                if (val == -1 && sudokuBoard.getPossibilities(n, column).contains(possibility)) result = false;
             }
-            int x = (column -1) /SUBSECTION_SIZE;
-            int y = (row -1) /SUBSECTION_SIZE;
-            for (int r = y*3 +1; r<y*3+SUBSECTION_SIZE +1; r++) {
-                for (int c = x*3 +1; c < x*3+SUBSECTION_SIZE +1; c++){
-                    Integer val = sudokuBoard.getValue(r,c);
-                    if(val == -1 && sudokuBoard.getPossibilities(r,c).contains(possibility)) result = false;
+            int x = (column - 1) / SUBSECTION_SIZE;
+            int y = (row - 1) / SUBSECTION_SIZE;
+            for (int r = y * 3 + 1; r < y * 3 + SUBSECTION_SIZE + 1; r++) {
+                for (int c = x * 3 + 1; c < x * 3 + SUBSECTION_SIZE + 1; c++) {
+                    Integer val = sudokuBoard.getValue(r, c);
+                    if (val == -1 && sudokuBoard.getPossibilities(r, c).contains(possibility)) result = false;
                 }
             }
-            if (result){
+            if (result) {
                 return possibility;
             }
         }
@@ -63,19 +63,19 @@ public class SudokuSolver {
     }
 
     private void clearPossibilities(int row, int column, SudokuBoard sudokuBoard) {
-        for (int n=BOARD_START_INDEX; n<BOARD_SIZE; n++) {
-            Integer val = sudokuBoard.getValue(row,n);
+        for (int n = BOARD_START_INDEX; n < BOARD_SIZE; n++) {
+            Integer val = sudokuBoard.getValue(row, n);
             sudokuBoard.getPossibilities(row, column).remove(val);
         }
-        for (int n=BOARD_START_INDEX; n<BOARD_SIZE; n++) {
-            Integer val = sudokuBoard.getValue(n,column);
+        for (int n = BOARD_START_INDEX; n < BOARD_SIZE; n++) {
+            Integer val = sudokuBoard.getValue(n, column);
             sudokuBoard.getPossibilities(row, column).remove(val);
         }
-        int x = (column -1) /SUBSECTION_SIZE;
-        int y = (row -1) /SUBSECTION_SIZE;
-        for (int r = y*3 +1; r<y*3+SUBSECTION_SIZE +1; r++) {
-            for (int c = x*3 +1; c < x*3+SUBSECTION_SIZE +1; c++){
-                Integer val = sudokuBoard.getValue(r,c);
+        int x = (column - 1) / SUBSECTION_SIZE;
+        int y = (row - 1) / SUBSECTION_SIZE;
+        for (int r = y * 3 + 1; r < y * 3 + SUBSECTION_SIZE + 1; r++) {
+            for (int c = x * 3 + 1; c < x * 3 + SUBSECTION_SIZE + 1; c++) {
+                Integer val = sudokuBoard.getValue(r, c);
                 sudokuBoard.getPossibilities(row, column).remove(val);
             }
         }
