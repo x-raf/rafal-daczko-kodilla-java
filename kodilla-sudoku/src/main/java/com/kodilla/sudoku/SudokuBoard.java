@@ -36,9 +36,12 @@ public class SudokuBoard {
     public String toString() {
         String a = new String(new char[41]).replace("\0",("\u2500"));
         String b = new String(new char[41]).replace("\0",("\u2501"));
-        String s =  b + "\n";
+        String s =  "  " + b + "\n";
+        int x = 0;
+        System.out.println("   1   2   3   4   5   6   7   8   9");
         for(int row = MIN_VALUE; row <= MAX_VALUE; row++){
-            s+="\u2551";
+            x++;
+            s+= x + " \u2551";
             for(int col = MIN_VALUE; col <= MAX_VALUE; col++){
                 s+=" ";
                 int val = getValue(row,col);
@@ -49,13 +52,13 @@ public class SudokuBoard {
                     s+= " \u2551";
                 }
             }
-            s+="\n";
+            s+="  " + "\n";
             if (row < MAX_VALUE && row%3 != 0){
-                s += a + "\n";
+                s += "  " + a + "\n";
             }else if(row < MAX_VALUE && row%3 ==0 && row != MAX_VALUE){
-                s+= b + "\n";
+                s+= "  " + b + "\n";
             }else {
-                s += b + "\n";
+                s += "  " + b + "\n";
             }
         }
         return s;
