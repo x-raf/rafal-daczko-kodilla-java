@@ -5,11 +5,19 @@ import javax.validation.constraints.NotNull;
 import java.util.ArrayList;
 import java.util.List;
 
-@NamedNativeQuery(
-        name = "Company.retrieveCompaniesWithSpecifiedThreeChars",
-        query = "SELECT * FROM companies WHERE LEFT(company_name, 3) = :FIRSTTHREELETTERS ",
-        resultClass = Company.class
-)
+@NamedNativeQueries({
+        @NamedNativeQuery(
+                name = "Company.retrieveCompaniesWithSpecifiedThreeChars",
+                query = "SELECT * FROM companies WHERE LEFT(company_name, 3) = :FIRSTTHREELETTERS ",
+                resultClass = Company.class
+        ),
+        @NamedNativeQuery(
+                name = "Company.findCompanyContainsChars",
+                query = "SELECT * FROM COMPANIES " +
+                        "WHERE COMPANY_NAME LIKE CONCAT('%', CONCAT(:PARTNAME, '%'))",
+                resultClass = Company.class
+        )
+})
 @Entity
 @Table(name = "COMPANIES")
 public class Company {

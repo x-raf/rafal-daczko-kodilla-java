@@ -9,7 +9,7 @@ public class BoardTestSuite {
         //Tu wypełnić planszę przykładowym sudoku
 
         //World hardest sudoku
-        /*board.setValue(1,1,8);
+       /* board.setValue(1,1,8);
         board.setValue(2,3,3);
         board.setValue(2,4,6);
         board.setValue(3,2,7);
@@ -47,7 +47,7 @@ public class BoardTestSuite {
         */
 
         //Easy Sudoku
-        board.setValue(1, 4, 2);
+       /* board.setValue(1, 4, 2);
         board.setValue(1, 5, 6);
         board.setValue(1, 7, 7);
         board.setValue(1, 9, 1);
@@ -83,18 +83,51 @@ public class BoardTestSuite {
         board.setValue(9, 3, 3);
         board.setValue(9, 5, 1);
         board.setValue(9, 6, 8);
+        return board;*/
+
+       //Medium sudoku
+        board.setValue(1,4,2);
+        board.setValue(1,9,3);
+        board.setValue(2,2,7);
+        board.setValue(2,5,9);
+        board.setValue(2,7,2);
+        board.setValue(3,2,6);
+        board.setValue(3,3,1);
+        board.setValue(3,4,5);
+        board.setValue(3,5,8);
+        board.setValue(3,8,4);
+        board.setValue(3,9,9);
+        board.setValue(4,1,8);
+        board.setValue(4,6,4);
+        board.setValue(4,9,1);
+        board.setValue(6,1,7);
+        board.setValue(6,4,8);
+        board.setValue(6,9,4);
+        board.setValue(7,1,5);
+        board.setValue(7,2,9);
+        board.setValue(7,5,7);
+        board.setValue(7,6,8);
+        board.setValue(7,7,3);
+        board.setValue(7,8,1);
+        board.setValue(8,3,4);
+        board.setValue(8,5,3);
+        board.setValue(8,8,5);
+        board.setValue(9,1,6);
+        board.setValue(9,6,1);
         return board;
+
     }
 
     @Test
     public void testSudokuBoard() {
         SudokuBoard board = initBoard();
         System.out.println(board);
+
         SudokuSolver solver = new SudokuSolver();
         solver.resolveSudoku(board);
+        System.out.println(board);
         /*
         SudokuSolverV2 solverV2 = new SudokuSolverV2();
         solverV2.solve(board);*/
-        System.out.println(board);
     }
 }

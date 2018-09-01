@@ -41,18 +41,21 @@ public class SudokuSolver {
             boolean result = true;
             for (int n = BOARD_START_INDEX; n < BOARD_SIZE; n++) {
                 Integer val = sudokuBoard.getValue(row, n);
-                if (val == -1 && sudokuBoard.getPossibilities(row, n).contains(possibility)) result = false;
+                if (val == -1 && sudokuBoard.getPossibilities(row, n).contains(possibility) &&
+                        (n != column)) result = false;
             }
             for (int n = BOARD_START_INDEX; n < BOARD_SIZE; n++) {
                 Integer val = sudokuBoard.getValue(n, column);
-                if (val == -1 && sudokuBoard.getPossibilities(n, column).contains(possibility)) result = false;
+                if (val == -1 && sudokuBoard.getPossibilities(n, column).contains(possibility) &&
+                        (n != row)) result = false;
             }
             int x = (column - 1) / SUBSECTION_SIZE;
             int y = (row - 1) / SUBSECTION_SIZE;
             for (int r = y * 3 + 1; r < y * 3 + SUBSECTION_SIZE + 1; r++) {
                 for (int c = x * 3 + 1; c < x * 3 + SUBSECTION_SIZE + 1; c++) {
                     Integer val = sudokuBoard.getValue(r, c);
-                    if (val == -1 && sudokuBoard.getPossibilities(r, c).contains(possibility)) result = false;
+                    if (val == -1 && sudokuBoard.getPossibilities(r, c).contains(possibility) &&
+                            (r != row || c != column)) result = false;
                 }
             }
             if (result) {
