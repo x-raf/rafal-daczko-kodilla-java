@@ -1,10 +1,35 @@
 package com.kodilla.sudoku;
 
+import static com.kodilla.sudoku.UserAction.EXAMPLE;
+import static com.kodilla.sudoku.UserAction.QUIT;
+import static com.kodilla.sudoku.UserAction.RESOLVE;
+
 public class SudokuGame {
 
     public static void main(String[] args) {
         SudokuBoard board = new SudokuBoard();
 
+        boolean finished = false;
+        while(!finished) {
+            System.out.println(board);
+            SudokuItem newItem = SudokuUserDialogs.getItem();
+            if(newItem.getUserAction()==EXAMPLE){
+                fillExampleData(board);
+            }else if(newItem.getUserAction()==QUIT) {
+                finished = true;
+            }else if(newItem.getUserAction()==RESOLVE) {
+                SudokuSolver solver = new SudokuSolver();
+                solver.resolveSudoku(board);
+                System.out.println(board);
+                finished = true;
+            }else {
+                board.setValue(newItem.getX(), newItem.getY(), newItem.getValue());
+                System.out.println(board);
+            }
+        }
+    }
+
+    private static void fillExampleData(SudokuBoard board) {
         //Medium sudoku
         board.setValue(1, 4, 2);
         board.setValue(1, 9, 3);
@@ -34,21 +59,5 @@ public class SudokuGame {
         board.setValue(8, 8, 5);
         board.setValue(9, 1, 6);
         board.setValue(9, 6, 1);
-
-        System.out.println(board);
-
-        boolean finished = false;
-        while(!finished) {
-            SudokuItem newItem = SudokuUserDialogs.getItem();
-            if(newItem.getValue() == 0) {
-                finished = true;
-            } else {
-                board.setValue(newItem.getX(), newItem.getY(), newItem.getValue());
-                System.out.println(board);
-            }
-        }
-        SudokuSolver solver = new SudokuSolver();
-        solver.resolveSudoku(board);
-        System.out.println(board);
     }
 }
