@@ -1,5 +1,8 @@
 package com.kodilla.sudoku;
 
+import static com.kodilla.sudoku.SudokuSolver.BOARD_SIZE;
+import static com.kodilla.sudoku.SudokuSolver.BOARD_START_INDEX;
+import static com.kodilla.sudoku.SudokuSolver.SUBSECTION_SIZE;
 import static com.kodilla.sudoku.UserAction.EXAMPLE;
 import static com.kodilla.sudoku.UserAction.QUIT;
 import static com.kodilla.sudoku.UserAction.RESOLVE;
@@ -23,10 +26,35 @@ public class SudokuGame {
                 System.out.println(board);
                 finished = true;
             }else {
-                board.setValue(newItem.getX(), newItem.getY(), newItem.getValue());
-                System.out.println(board);
+                if(isValuePossible(newItem.getX(), newItem.getY(), newItem.getValue(),board)) {
+                    board.setValue(newItem.getX(), newItem.getY(), newItem.getValue());
+                    System.out.println(board);
+                }else {
+                    SudokuUserDialogs.showError();
+                }
             }
         }
+    }
+
+    private static boolean isValuePossible(int row, int column, int value, SudokuBoard sudokuBoard) {
+        boolean result = true;
+        for (int n = BOARD_START_INDEX; n < BOARD_SIZE; n++) {
+            Integer val = sudokuBoard.getValue(row, n);
+            if(value == val) result = false;
+        }
+        for (int n = BOARD_START_INDEX; n < BOARD_SIZE; n++) {
+            Integer val = sudokuBoard.getValue(n, column);
+            if(value == val) result = false;
+        }
+        int x = (column - 1) / SUBSECTION_SIZE;
+        int y = (row - 1) / SUBSECTION_SIZE;
+        for (int r = y * 3 + 1; r < y * 3 + SUBSECTION_SIZE + 1; r++) {
+            for (int c = x * 3 + 1; c < x * 3 + SUBSECTION_SIZE + 1; c++) {
+                Integer val = sudokuBoard.getValue(r, c);
+                if(value == val) result = false;
+            }
+        }
+        return result;
     }
 
     private static void fillExampleData(SudokuBoard board) {

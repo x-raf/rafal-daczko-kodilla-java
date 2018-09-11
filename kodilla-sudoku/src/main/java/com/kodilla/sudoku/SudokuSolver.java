@@ -4,9 +4,9 @@ import static com.kodilla.sudoku.SudokuElement.EMPTY;
 
 public class SudokuSolver {
 
-    private static final int BOARD_SIZE = 10;
-    private static final int SUBSECTION_SIZE = 3;
-    private static final int BOARD_START_INDEX = 1;
+    public static final int BOARD_SIZE = 10;
+    public static final int SUBSECTION_SIZE = 3;
+    public static final int BOARD_START_INDEX = 1;
 
 
     public void resolveSudoku(SudokuBoard sudokuBoard) {

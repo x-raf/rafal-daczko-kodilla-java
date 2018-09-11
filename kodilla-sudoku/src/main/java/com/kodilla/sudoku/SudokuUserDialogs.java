@@ -35,4 +35,8 @@ public class SudokuUserDialogs {
             }
         }
     }
+
+    public static void showError() {
+        System.out.println("This value cannot be inserted here!");
+    }
 }
